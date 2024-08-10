@@ -69,6 +69,12 @@ while True:
            
             else:
                 sg.popup('Contact not found')
+    elif choice == '4':
+        cursor.execute("SELECT * FROM CONTACTS")
+        result = cursor.fetchall()
+        """ for record in result:
+            sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")"""
+        sg.popup(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")
     
     
     
