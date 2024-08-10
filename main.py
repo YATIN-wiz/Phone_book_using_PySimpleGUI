@@ -67,36 +67,31 @@ while True:
             for record in result:
                 sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")
            
-            else:
-                sg.popup('Contact not found')
+        """ else:
+                sg.popup('Contact not found')"""
     elif choice == '4':
         cursor.execute("SELECT * FROM CONTACTS")
         result = cursor.fetchall()
-        """ for record in result:
-            sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")"""
-        sg.popup(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")
+        for record in result:
+            
+            sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")
     
-    
-    
-    
-    
-    
+    elif choice == '5':
+        layout = [ [sg.Text("Enter relation to view:"),sg.Input()],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+        window = sg.Window('5. VIEW THE CONTACTS OF A PARTICULAR RELATION', layout)
+        event, values = window.read()
+        if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+            break
+        else:
+            cursor.execute("SELECT * FROM CONTACTS WHERE Relation=?", (values[0],))
+            result = cursor.fetchall()
+            for record in result:
+                sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")
+            """else:
+                sg.popup('No contacts found for this relation')"""
+       
+        window.close()
+
     elif choice == '6':
         break
-
-
-
-
-
-#name = sg.popup_get_text('What is your name?')
-#print(name)
-
-
-# Event Loop to process "events" and get the "values" of the inputs
-"""while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
-        break
-    print('You entered ', values[0])
-
-window.close()"""
