@@ -63,9 +63,10 @@ while True:
             break
         else:
             cursor.execute("SELECT * FROM CONTACTS WHERE Name=?", (values[0],))
-            result = cursor.fetchone()
-            if result:
-                sg.popup(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")
+            result = cursor.fetchall()
+            for record in result:
+                sg.popup(f"Name: {record[0]}, Number: {record[1]}, Relation: {record[2]}")
+           
             else:
                 sg.popup('Contact not found')
     
