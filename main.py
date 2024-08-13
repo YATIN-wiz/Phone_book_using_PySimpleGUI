@@ -34,7 +34,11 @@ while True:
             
             layout = [[sg.Text(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")], #change relation to category
                       [sg.Button("DELETE")],
-                      [sg.Button("EDIT")]]
+                      [sg.Button("EDIT")]] #use this layout for the SEARCH event also. 
+            #make the Texts 'disabled' so that the used wont be able to edit it at the first place
+            #then when the user clicks on "edit contact" they should become 'enabled'
+            #This to to learn dynamic state change of the controls/GUI elements.
+            #This way you can removed one layout.
             window = sg.Window('Contact Details', layout)
             events = window.read()
             print(events)
