@@ -11,7 +11,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS CONTACTS (Name text, Number string, R
 def menu():
     layout = [[ sg.Input(),sg.Button("SEARCH")],
               [ sg.Button("NEW CONTACT")],]
-    window = sg.Window('Window Title', layout)
+    window = sg.Window('Window Title', layout) # change the windown title
     event,values = window.read()
     print(event)
     if event == sg.WIN_CLOSED or event == 'Cancel': 
@@ -32,7 +32,7 @@ while True:
        
         if result:
             
-            layout = [[sg.Text(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")],
+            layout = [[sg.Text(f"Name: {result[0]}, Number: {result[1]}, Relation: {result[2]}")], #change relation to category
                       [sg.Button("DELETE")],
                       [sg.Button("EDIT")]]
             window = sg.Window('Contact Details', layout)
@@ -47,7 +47,7 @@ while True:
                 sg.popup("Contact deleted successfully!")
                 window.close()
             elif events[0] == "EDIT":
-                layout = [ [sg.Text("Enter new name:"),sg.Input(result[0])],
+                layout = [ [sg.Text("Enter new name:"),sg.Input(result[0])], #remove 'enter' from everywhere
                         [sg.Text("Enter new number:"),sg.Input(result[1])],
                         [sg.Text("Enter new relation:"),sg.Input(result[2])],
                         [sg.Button('Save'), sg.Button('Cancel')] ]
